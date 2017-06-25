@@ -9,14 +9,17 @@ function Calc(value) {
 
     if (value.indexOf('*') >= 0) {
         var replaceRes
-        left = parseInt(value.split('*')[0]);
-        right = parseInt(value.split('*')[2]);
+        var substr = value.substr(value.indexOf('*') - 1, 3);
+        left = parseInt(substr.split('*')[0]);
+        right = parseInt(substr.split('*')[1]);
         res = left * right;
-        prom = value.split('*')[0] + '*' + value.split('*')[1];
+        replaceRes = value.replace(substr, res);
+
+
+        console.log('substr ', substr);
         console.log('value.split ', value.split('*'));
         console.log('value.split 1:', value.split('*')[0]);
         console.log('value.split 2:', value.split('*')[1]);
-        replaceRes = value.replace(prom, res);
         console.log('/');
         console.log('res ', res);
         console.log('left ', left);
@@ -26,15 +29,23 @@ function Calc(value) {
         console.log('value', value);
         console.log('/');
 
-        //   return Calc(replaceRes);
+        return Calc(replaceRes);
 
     }
 
     if (value.indexOf('/') >= 0)
         res = parseInt(value.split('/')[0]) / parseInt(value.split('/')[1]);
 
-    if (value.indexOf('+') >= 0)
-        res = parseInt(value.split('+')[0]) + parseInt(value.split('+')[1]);
+    if (value.indexOf('+') >= 0) {
+        var replaceRes
+        var substr = value.substr(value.indexOf('+') - 1, 3);
+        left = parseInt(substr.split('+')[0]);
+        right = parseInt(substr.split('+')[1]);
+        res = left + right;
+        replaceRes = value.replace(substr, res);
+        return Calc(replaceRes);
+    }
+
 
     if (value.indexOf('-') >= 0)
         res = parseInt(value.split('-')[0]) - parseInt(value.split('-')[1]);
@@ -44,4 +55,4 @@ function Calc(value) {
     return value;
 }
 
-Calc('2*4+4*3')
+Calc('2+3+4')

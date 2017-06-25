@@ -1,53 +1,62 @@
- <!DOCTYPE html PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<!DOCTYPE html PUBLIC "-//IETF//DTD HTML 2.0//EN">
 <HTML>
-   <HEAD>
-        <meta charset="utf-8">
-      <TITLE>
-         A Small Hello
-      </TITLE>
-   </HEAD>
+
+<HEAD>
+    <meta charset="utf-8">
+    <TITLE>
+        A Small Hello
+    </TITLE>
+</HEAD>
+
 <BODY>
-   <H1>Hi</H1>
     <input id="input1" onkeyup="HandleChange()" type="text" size="40">
-   
-   <h3 id="result"> 0 </h3>
-   <script>
-    function Calc(value) {
-        var res; 
-        var prom;
-        var i=0;
-        console.log(value) ;          
-        
 
-        if ( value.indexOf('*') >= 0 ) {   
-         i++;       
-         res =  parseInt(value.split('*')[0]) * parseInt(value.split('*')[1]) ;
-         prom = value.split('*')[0] + '*' + value.split('*')[1];
-         if (i<3)
-         return Calc ( value.replace(prom, res ) );
+    <h3 id="result"> 0 </h3>
+    <div id="buttonsContainer">
+        <div class="row">
+            <button class="buttonItem">C</button>
+            <button class="buttonItem">()</button>
+            <button class="buttonItem">%</button>
+            <button class="buttonItem">÷</button>
+        </div>
+        <div class="row">
+            <button class="buttonItem">7</button>
+            <button class="buttonItem">8</button>
+            <button class="buttonItem">9</button>
+            <button class="buttonItem">∗</button>
+        </div>
+        <div class="row">
+            <button class="buttonItem">4</button>
+            <button class="buttonItem">5</button>
+            <button class="buttonItem">6</button>
+            <button class="buttonItem">−</button>
+        </div>
+        <div class="row">
+            <button class="buttonItem">1</button>
+            <button class="buttonItem">2</button>
+            <button class="buttonItem">3</button>
+            <button class="buttonItem">+</button>
+        </div>
+        <div class="row">
+            <button class="buttonItem">±</button>
+            <button class="buttonItem">0</button>
+            <button class="buttonItem">,</button>
+            <button class="buttonItem">=</button>
+        </div>                                
+    </div>
+    <script src="test.js">
+
+    </script>
+    <script>
+        function HandleChange() {
+            var input = document.querySelector('#input1');
+            var resultElement = document.querySelector('#result');
+            console.log(input.value);
+            var result = Calc(input.value);
+            resultElement.innerHTML = result;
         }
-        
-        if ( value.indexOf('/') >= 0 ) 
-         res =  parseInt(value.split('/')[0]) / parseInt(value.split('/')[1]) ;
-
-        if ( value.indexOf('+') >= 0 ) 
-         res =  parseInt(value.split('+')[0]) + parseInt(value.split('+')[1]) ;
-        
-        if ( value.indexOf('-') >= 0 ) 
-         res =  parseInt(value.split('-')[0]) - parseInt(value.split('-')[1]) ;
-        
-      
-        
-        return res;        
-    } 
-    function HandleChange() {        
-        var input = document.querySelector('#input1');
-        var resultElement = document.querySelector('#result');
-        console.log(input.value);
-        var result = Calc(input.value);        
-        resultElement.innerHTML = result;        
-    }    
-    HandleChange();
-   </script>
+        HandleChange();
+    </script>
 </BODY>
+
 </HTML>

@@ -2,21 +2,25 @@
 function Calc(value) {
     var res;
     var prom;
-    var i = 0;
+
     var left, right
     console.log(value);
 
 
-    if (value.indexOf('*') >= 0) {
+    if (value.indexOf('*') > 0) {
+        var substr0 = value.split('*', 2);
         var replaceRes
-        var substr = value.substr(value.indexOf('*') - 1, 3);
-        left = parseInt(substr.split('*')[0]);
-        right = parseInt(substr.split('*')[1]);
+
+        left = parseInt(substr0[0].split('+'));
+        right = parseInt(substr0[1].split('+', 2)[0]);
+        var substr = value.substr(value.indexOf('*') - left.toString.length, 1 + right.toString.length);
         res = left * right;
         replaceRes = value.replace(substr, res);
 
 
         console.log('substr ', substr);
+
+        console.log('substr0 ', substr0);
         console.log('value.split ', value.split('*'));
         console.log('value.split 1:', value.split('*')[0]);
         console.log('value.split 2:', value.split('*')[1]);
@@ -55,4 +59,4 @@ function Calc(value) {
     return value;
 }
 
-Calc('2+3+4')
+Calc('12*13')

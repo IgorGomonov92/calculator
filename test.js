@@ -11,28 +11,29 @@ function Calc(value) {
         var substr0 = value.split('*', 2);
         var replaceRes
 
-        left = parseInt(substr0[0].split('+'));
-        right = parseInt(substr0[1].split('+', 2)[0]);
-        var substr = value.substr(value.indexOf('*') - left.toString.length, 1 + right.toString.length);
-        res = left * right;
+        left = substr0[0].split('+', 2);
+        right = substr0[1].split('+', 2)[0];
+        var substr = value.substr(value.indexOf('*') - left[0].length, 2 + left[0].length + right.length);
+        res = parseInt(left) * parseInt(right);
         replaceRes = value.replace(substr, res);
 
-
+        /*
         console.log('substr ', substr);
-
         console.log('substr0 ', substr0);
         console.log('value.split ', value.split('*'));
         console.log('value.split 1:', value.split('*')[0]);
         console.log('value.split 2:', value.split('*')[1]);
         console.log('/');
         console.log('res ', res);
-        console.log('left ', left);
+        console.log('left ', left[0]);
         console.log('right ', right);
+        console.log('left len ', left[0].length);
+        console.log('right len', right.length);
         console.log('prom ', prom);
         console.log('replaceRes', replaceRes);
         console.log('value', value);
         console.log('/');
-
+        */
         return Calc(replaceRes);
 
     }
@@ -41,13 +42,30 @@ function Calc(value) {
         res = parseInt(value.split('/')[0]) / parseInt(value.split('/')[1]);
 
     if (value.indexOf('+') >= 0) {
+        var substr0 = value.split('+', 2);
         var replaceRes
-        var substr = value.substr(value.indexOf('+') - 1, 3);
-        left = parseInt(substr.split('+')[0]);
-        right = parseInt(substr.split('+')[1]);
-        res = left + right;
+        left = substr0[0].split('+', 2);
+        right = substr0[1].split('+', 2)[0];
+        var substr = value.substr(value.indexOf('+') - left[0].length, 2 + left[0].length + right.length);
+        res = parseInt(left) + parseInt(right);
         replaceRes = value.replace(substr, res);
+        console.log('substr ', substr);
+        console.log('substr0 ', substr0);
+        console.log('value.split ', value.split('*'));
+        console.log('value.split 1:', value.split('*')[0]);
+        console.log('value.split 2:', value.split('*')[1]);
+        console.log('/');
+        console.log('res ', res);
+        console.log('left ', left[0]);
+        console.log('right ', right);
+        console.log('left len ', left[0].length);
+        console.log('right len', right.length);
+        console.log('prom ', prom);
+        console.log('replaceRes', replaceRes);
+        console.log('value', value);
+        console.log('/');
         return Calc(replaceRes);
+
     }
 
 
@@ -59,4 +77,5 @@ function Calc(value) {
     return value;
 }
 
-Calc('12*13')
+Calc('2*4+130+2222')
+
